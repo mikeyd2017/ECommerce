@@ -23,12 +23,15 @@ namespace ECommerce.Controllers
             //here we set all classes needed for the controller, IConfig is built in to get our connection string. We will need to set DataHelper of the oFactory in any database controller.
             oFactory.DataHelper = new DataHelper(iConfig);
             oFactory.TableCommands = new TableCommands(oFactory.DataHelper);
+            oFactory.DepartmentCommands = new DepartmentCommands(oFactory.DataHelper);
         }
 
         public IActionResult Index()
         {
             //oFactory.TableCommands.CreateTestTable();
             //oFactory.TableCommands.DropTestTable();
+            //oFactory.TableCommands.CreateDepartmentTable();
+            //oFactory.TableCommands.DropDepartmentTable();
             return View();
         }
 

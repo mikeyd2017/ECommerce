@@ -15,15 +15,17 @@ namespace ECommerce
         //That way we don't have to remake the whole factory every time the controller is called, it's not too intensive either way.
         public DataHelper DataHelper;
         public TableCommands TableCommands;
+        public DepartmentCommands DepartmentCommands;
 
         public Factory()
         {
 
         }
-        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands)
+        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands)
         {
             DataHelper = dataHelper;
             TableCommands = tableCommands;
+            DepartmentCommands = departmentCommands;
         }
     }
 }

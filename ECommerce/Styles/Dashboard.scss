@@ -1,4 +1,6 @@
-﻿.dashboard {
+﻿$charcoal: #0d0d0d;
+$light-charcoal: #1a1a1a;
+.dashboard {
     width: 300px;
     height: 100vh;
     position: absolute;
@@ -8,14 +10,14 @@
         width: 100%;
         float: left;
         height: 30%;
-        background-color: purple;
+        background-color: $light-charcoal;
     }
 
     &__bottom__container {
         width: 100%;
         float: left;
         height: 70%;
-        background-color: red;
+        background-color: $charcoal;
     }
 
 
@@ -35,6 +37,8 @@
 
 .main {
     background-color: blue;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 body {

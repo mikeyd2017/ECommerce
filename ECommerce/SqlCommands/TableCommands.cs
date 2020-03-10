@@ -38,5 +38,25 @@ namespace ECommerce.SqlCommands
             DataHelper.DbConn.Close();
             return true;
         }
+                                                     
+        public bool CreateDepartmentTable()
+        {
+            string query = "Create Table Department (DepartmentID int NOT NULL IDENTITY PRIMARY KEY, Name varchar(200) NOT NULL, CreateDate date NOT NULL);";
+            SqlCommand cmd = new SqlCommand(query, DataHelper.DbConn);
+            DataHelper.DbConn.Open();
+            cmd.ExecuteNonQuery();
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+        public bool DropDepartmentTable()
+        {
+            string query = "IF Object_ID('dbo.Department', 'U') IS NOT NULL DROP TABLE dbo.Department;";
+            SqlCommand cmd = new SqlCommand(query, DataHelper.DbConn);
+            DataHelper.DbConn.Open();
+            cmd.ExecuteNonQuery();
+            DataHelper.DbConn.Close();
+            return true;
+        }
     }
 }
