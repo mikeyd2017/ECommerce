@@ -14,7 +14,11 @@ namespace ECommerce
         public DataHelper DataHelper;
         public TableCommands TableCommands;
 
-        public Factory([Optional] DataHelper dataHelper, [Optional] TableCommands tableCommands)
+        public Factory()
+        {
+
+        }
+        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands)
         {
             DataHelper = dataHelper;
             TableCommands = tableCommands;

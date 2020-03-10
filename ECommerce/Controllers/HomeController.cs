@@ -27,7 +27,7 @@ namespace ECommerce.Controllers
 
         public IActionResult Index()
         {
-            oFactory.TableCommands.CreateTestTable();
+            //oFactory.TableCommands.CreateTestTable();
             //oFactory.TableCommands.DropTestTable();
             return View();
         }
