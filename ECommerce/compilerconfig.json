@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/dashboard.css",
+    "inputFile": "Styles/Dashboard.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/shop.css",
+    "inputFile": "Styles/Shop.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/main.css",
+    "inputFile": "Styles/Main.scss"
+  }
+]

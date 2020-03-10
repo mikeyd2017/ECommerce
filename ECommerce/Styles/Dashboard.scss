@@ -1,0 +1,43 @@
+﻿.dashboard {
+    width: 300px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top:0;
+    &__top__container {
+        width: 100%;
+        float: left;
+        height: 30%;
+        background-color: purple;
+    }
+
+    &__bottom__container {
+        width: 100%;
+        float: left;
+        height: 70%;
+        background-color: red;
+    }
+
+
+}
+
+.mainContainer {
+    width: calc(100% - 300px);
+    height: 100vh;
+    overflow-y: scroll;
+    float: right;
+
+    &__content {
+        width: 100%;
+    }
+}
+
+
+.main {
+    background-color: blue;
+}
+
+body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
