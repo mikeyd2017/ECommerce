@@ -18,7 +18,7 @@ namespace ECommerce.SqlCommands
             DataHelper = dataHelper;
         }
 
-        //Examples of queries using this factory set up, they will be the same. Just using the DataHelper.DbConn string instead of setting it every time.
+        //Examples of queries using this factory set up, they will be the same. Just using the DataHelper.DbConn SqlConnection object instead of setting it every time.
         public bool CreateTestTable()
         {
             string query = "Create Table Test (TestID int, Name varchar(255), Date date);";
