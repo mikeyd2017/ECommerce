@@ -8,6 +8,7 @@ using ECommerce.Models;
 using ECommerce.Helpers;
 using Microsoft.Extensions.Configuration;
 using ECommerce.SqlCommands;
+using ECommerce.DataModels;
 
 namespace ECommerce.Controllers
 {
@@ -32,7 +33,9 @@ namespace ECommerce.Controllers
             //oFactory.TableCommands.DropTestTable();
             //oFactory.TableCommands.CreateDepartmentTable();
             //oFactory.TableCommands.DropDepartmentTable();
-            return View();
+            //oFactory.DepartmentCommands.CreateDepartments();
+            List<Department> departments = oFactory.DepartmentCommands.GetAllDepartments();
+            return View(departments);
         }
 
         public IActionResult About()

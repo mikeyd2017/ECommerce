@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -8,24 +9,25 @@ namespace ECommerce.DataModels
 {
     public class Department
     {
-        private int DepartmentID { get; set; }
-        private string Name { get; set; }
-        private DateTime DateCreated { get; set; }
+        public int DepartmentID { get; set; }
+        public string Name { get; set; }
+        public DateTime DateCreated { get; set; }
 
         //Optional when creating the department, because the ID will be set by SQL and the dateTime will be set automatically. But I want them in the parameter so when we get
         //Them from the database we can still easily instaniate the dataModel with one constructor. Still wondering if this works correctly.
-        public Department([Optional] int departmentID, string name, [Optional] DateTime dateCreated)
+        public Department([Optional] int departmentID, string name, DateTime dateCreated)
         {
             Name = name;
             DepartmentID = departmentID;
-            if (dateCreated != null)
-            {
-                DateCreated = dateCreated;
-            }
-            else
-            {
-                DateCreated = DateTime.Now;
-            }
+            DateCreated = dateCreated;
+        }
+
+        public Department(DataRow row)
+        {
+            DepartmentID = Convert.ToInt32(row[0].ToString());
+            Name = row[1].ToString();
+            DateCreated = Convert.ToDateTime(row[2]);
+            DateCreated = DateCreated.Date;
         }
     }
 }
