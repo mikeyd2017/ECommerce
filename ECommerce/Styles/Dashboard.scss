@@ -5,7 +5,9 @@ $light-charcoal: #1a1a1a;
     height: 100vh;
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
+    box-shadow: -4px 0px 14px 3px rgba(0,0,0,0.82);
+
     &__top__container {
         width: 100%;
         float: left;
@@ -19,8 +21,6 @@ $light-charcoal: #1a1a1a;
         height: 70%;
         background-color: $charcoal;
     }
-
-
 }
 
 .mainContainer {
@@ -28,6 +28,7 @@ $light-charcoal: #1a1a1a;
     height: 100vh;
     overflow-y: scroll;
     float: right;
+    background: linear-gradient(360deg, $charcoal 0%, $light-charcoal 5%);
 
     &__content {
         width: 100%;
@@ -36,7 +37,6 @@ $light-charcoal: #1a1a1a;
 
 
 .main {
-    background-color: blue;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -44,4 +44,24 @@ $light-charcoal: #1a1a1a;
 body {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $charcoal;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $light-charcoal;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

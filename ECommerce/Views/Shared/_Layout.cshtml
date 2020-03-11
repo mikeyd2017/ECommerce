@@ -22,21 +22,10 @@
 </head>
 <body>
 
-    <div class="dashboard">
-        <div class="dashboard__top__container">
-
-        </div>
-        <div class="dashboard__bottom__container">
-
-        </div>
-    </div>
+    <div>@{Html.RenderPartial("_Dashboard");}</div>
     <div class="mainContainer">
         <div class="mainContainer__content">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; 2020 - ECommerce</p>
-            </footer>
         </div>
     </div>
 
