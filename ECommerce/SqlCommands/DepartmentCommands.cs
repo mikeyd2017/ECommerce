@@ -13,7 +13,6 @@ namespace ECommerce.SqlCommands
     {
         //Each Commands file will be created with a dataHelper loaded in from the Factory in the controller
         private DataHelper DataHelper;
-        private DataRow row;
 
         //Constructor used when instanciating the command file, we are using the dataHelper from the Factory in the controller
         public DepartmentCommands(DataHelper dataHelper)
@@ -51,10 +50,6 @@ namespace ECommerce.SqlCommands
         public List<Department> GetAllDepartments()
         {
             SqlCommand cmd = DataHelper.DbConn.CreateCommand();
-            DataTable table = new DataTable();
-            table.Columns.Add("DepartmentID", typeof(int));
-            table.Columns.Add("Name", typeof(string));
-            table.Columns.Add("DateCreated", typeof(DateTime));
 
             cmd.CommandText = "Select * FROM Department;";
 

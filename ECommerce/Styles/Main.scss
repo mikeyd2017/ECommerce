@@ -1,3 +1,80 @@
-﻿body {
+﻿@import 'Colors.scss';
 
+body {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+p {
+    margin: 0px 0px 0px 0px;
+}
+
+.mainContainer {
+    width: calc(100% - 300px);
+    height: 100vh;
+    overflow-y: scroll;
+    float: right;
+    background: linear-gradient(360deg, $charcoal 0%, $light-charcoal 5%);
+
+    &__content {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+.main {
+
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: $charcoal;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $light-charcoal;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.departmentContainer {
+    width: 100%;
+
+    &__department {
+        display: block;
+        width: 22.5%;
+        min-width: 200px;
+        float: left;
+        margin-left: 2.5%;
+        background-color: $charcoal;
+        margin-top: 50px;
+        height: 230px;
+
+        &:first-of-type {
+            margin-left: 1.25%;
+        }
+
+        &:nth-child(5n) {
+            margin-left: 1.25%;
+        }
+
+        &__name {
+            font-size: 75px;
+            text-align: center;
+            color: white;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
 }

@@ -1,5 +1,5 @@
-﻿$charcoal: #0d0d0d;
-$light-charcoal: #1a1a1a;
+﻿@import 'Colors.scss';
+
 .dashboard {
     width: 300px;
     height: 100vh;
@@ -21,47 +21,4 @@ $light-charcoal: #1a1a1a;
         height: 70%;
         background-color: $charcoal;
     }
-}
-
-.mainContainer {
-    width: calc(100% - 300px);
-    height: 100vh;
-    overflow-y: scroll;
-    float: right;
-    background: linear-gradient(360deg, $charcoal 0%, $light-charcoal 5%);
-
-    &__content {
-        width: 100%;
-    }
-}
-
-
-.main {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-body {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-}
-
-/* width */
-::-webkit-scrollbar {
-    width: 15px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    background: $charcoal;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: $light-charcoal;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }

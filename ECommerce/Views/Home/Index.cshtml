@@ -3,11 +3,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="main">
+<div class="departmentContainer">
     @foreach (var item in Model)
     {
-        <p>@item.DepartmentID</p>
-        <p>@item.Name</p>
-        <p>@item.DateCreated</p>
+        <div class="departmentContainer__department">
+            <p class="departmentContainer__department__name">@item.Name</p>
+        </div>
     }
+    <div style="clear:both">
 </div>
+

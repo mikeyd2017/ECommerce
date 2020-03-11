@@ -19,6 +19,7 @@ namespace ECommerce.SqlCommands
         }
 
         //Examples of queries using this factory set up, they will be the same. Just using the DataHelper.DbConn SqlConnection object instead of setting it every time.
+        //USE DEPARTMENT COMMANDS SYNTAX, USE DBConn.CreateCommand 
         public bool CreateTestTable()
         {
             string query = "Create Table Test (TestID int, Name varchar(255), Date date);";
