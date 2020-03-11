@@ -21,13 +21,5 @@ namespace ECommerce.DataModels
             DepartmentID = departmentID;
             DateCreated = dateCreated;
         }
-
-        public Department(DataRow row)
-        {
-            DepartmentID = Convert.ToInt32(row[0].ToString());
-            Name = row[1].ToString();
-            DateCreated = Convert.ToDateTime(row[2]);
-            DateCreated = DateCreated.Date;
-        }
     }
 }
