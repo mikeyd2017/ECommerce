@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using ECommerce.Models;
 using ECommerce.Helpers;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +26,7 @@ namespace ECommerce.Controllers
             oFactory.DataHelper = new DataHelper(iConfig);
             oFactory.TableCommands = new TableCommands(oFactory.DataHelper);
             oFactory.DepartmentCommands = new DepartmentCommands(oFactory.DataHelper);
+            oFactory.AccountCommands = new AccountCommands(oFactory.DataHelper);
         }
 
         public IActionResult Index()
@@ -34,6 +36,18 @@ namespace ECommerce.Controllers
             //oFactory.TableCommands.CreateDepartmentTable();
             //oFactory.TableCommands.DropDepartmentTable();
             //oFactory.DepartmentCommands.CreateDepartments();
+            //oFactory.TableCommands.CreateUserTable();
+            //oFactory.TableCommands.AddHashedPassToUserTable();
+            if (HttpContext.Session.GetString("username") == null)
+            {
+                HttpContext.Session.SetString("username", "");
+            }
+
+            if (HttpContext.Session.GetString("role") == null)
+            {
+                HttpContext.Session.SetString("role", "");
+            }
+
             List<Department> departments = oFactory.DepartmentCommands.GetAllDepartments();
             return View(departments);
         }

@@ -59,5 +59,29 @@ namespace ECommerce.SqlCommands
             DataHelper.DbConn.Close();
             return true;
         }
+
+        public bool CreateUserTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "Create Table Users (UserID int IDENTITY(1,1) PRIMARY KEY, Username varchar(20) NOT NULL, Password varchar(40) NOT NULL, Email varchar(60) NOT NULL, Role varchar(30) NOT NULL, CreateDate date NOT NULL);";
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+        public bool AddHashedPassToUserTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "ALTER TABLE Users Alter Column Password char(300);";
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
     }
 }

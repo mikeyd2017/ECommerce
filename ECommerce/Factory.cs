@@ -16,16 +16,20 @@ namespace ECommerce
         public DataHelper DataHelper;
         public TableCommands TableCommands;
         public DepartmentCommands DepartmentCommands;
+        public AccountCommands AccountCommands;
+        public AccountHelper AccountHelper;
 
         public Factory()
         {
 
         }
-        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands)
+        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands, [Optional] AccountCommands accountCommands, [Optional] AccountHelper accountHelper)
         {
             DataHelper = dataHelper;
             TableCommands = tableCommands;
             DepartmentCommands = departmentCommands;
+            AccountCommands = accountCommands;
+            AccountHelper = accountHelper;
         }
     }
 }

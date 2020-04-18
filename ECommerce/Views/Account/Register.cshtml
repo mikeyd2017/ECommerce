@@ -1,0 +1,12 @@
+﻿@model User
+@{
+    ViewData["Title"] = "CreateUser";
+}
+
+<form method="post" asp-controller="Account" asp-action="Register">
+    Email: <input asp-for="Email" />
+    Username: <input asp-for="Username" />
+    Password: <input asp-for="Password" />
+    <button type="submit">Register</button>
+</form>
+
