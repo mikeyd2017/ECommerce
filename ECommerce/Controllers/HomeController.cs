@@ -38,15 +38,6 @@ namespace ECommerce.Controllers
             //oFactory.DepartmentCommands.CreateDepartments();
             //oFactory.TableCommands.CreateUserTable();
             //oFactory.TableCommands.AddHashedPassToUserTable();
-            if (HttpContext.Session.GetString("username") == null)
-            {
-                HttpContext.Session.SetString("username", "");
-            }
-
-            if (HttpContext.Session.GetString("role") == null)
-            {
-                HttpContext.Session.SetString("role", "");
-            }
 
             List<Department> departments = oFactory.DepartmentCommands.GetAllDepartments();
             return View(departments);

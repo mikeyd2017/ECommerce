@@ -6,7 +6,7 @@
 
 <div class="dashboard">
     <div class="dashboard__top__container">
-        @if (httpContextAccessor.HttpContext.Session.GetString("username") == "")
+        @if (String.IsNullOrEmpty(httpContextAccessor.HttpContext.Session.GetString("username")))
         {
             <h1>No User</h1>
         }
@@ -21,6 +21,7 @@
         <ul class="left-dashboard__bottom__container__content__list">
             <li>@Html.ActionLink("Log In", "Login", "Account")</li>
             <li>@Html.ActionLink("Register", "Register", "Account")</li>
+            <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
         </ul>
     </div>
 </div>

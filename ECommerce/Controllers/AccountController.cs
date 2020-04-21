@@ -55,6 +55,15 @@ namespace FullStackFullTime.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.SetString("username", "");
+            HttpContext.Session.SetString("role", "");
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
 
 
     }
