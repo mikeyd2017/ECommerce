@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ECommerce.Models
+namespace ECommerce.DataModels
 {
     public class User
     {
@@ -22,6 +22,8 @@ namespace ECommerce.Models
         public DateTime DateCreated { get; set; }
 
         public string Role { get; set; }
+
+        public string LoginError { get; set; }
 
         public User()
         {

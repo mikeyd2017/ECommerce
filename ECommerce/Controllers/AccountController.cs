@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ECommerce;
 using ECommerce.Helpers;
+using ECommerce.DataModels;
 using ECommerce.SqlCommands;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,18 +29,37 @@ namespace FullStackFullTime.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            HttpContext.Session.SetString("uriBeforeLogin", Request.Headers["Referer"].ToString());
+
+            User newUser = new User();
+            return View(newUser);
         }
 
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            _Factory.AccountHelper.CheckAccount(username, password);
+            string errorOrPassword = _Factory.AccountHelper.CheckLogin(username, password);
+
+            if (password != errorOrPassword)
+            {
+                User loginUser = new User();
+                loginUser.LoginError = errorOrPassword;
+
+                return View(loginUser);
+            }
 
             HttpContext.Session.SetString("role", _Factory.AccountCommands.GetUserRole(username));
+            HttpContext.Session.SetString("userID", Convert.ToString(_Factory.AccountCommands.GetUserID(username)));
             HttpContext.Session.SetString("username", username);
 
-            return View();
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("uriBeforeLogin")))
+            {
+                return Redirect(HttpContext.Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                return Redirect(HttpContext.Session.GetString("uriBeforeLogin"));
+            }
         }
 
         public IActionResult Register()
@@ -50,17 +70,31 @@ namespace FullStackFullTime.Controllers
         [HttpPost]
         public IActionResult Register(string username, string password, string email)
         {
+            password = _Factory.AccountHelper.HashPassword(password);
 
-            _Factory.AccountHelper.CreateUser(username, _Factory.AccountHelper.HashPassword(password), email);
+            _Factory.AccountHelper.CreateUser(username, password, email);
             return View();
         }
 
         public IActionResult Logout()
         {
-            HttpContext.Session.SetString("username", "");
-            HttpContext.Session.SetString("role", "");
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("role")))
+            {
+                HttpContext.Session.SetString("role", "");
+            }
 
-            return RedirectToAction("Index", "Home");
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("userID")))
+            {
+                HttpContext.Session.SetString("userID", "");
+            }
+
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("username")))
+            {
+                HttpContext.Session.SetString("username", "");
+            }
+
+
+            return Redirect(Request.Headers["Referer"].ToString());
         }
 
 

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using ECommerce.Models;
 
 namespace ECommerce.SqlCommands
 {
@@ -14,6 +13,7 @@ namespace ECommerce.SqlCommands
         private DataHelper DataHelper;
         private string password;
         private string role;
+        private int userID;
 
         public AccountCommands(DataHelper dataHelper)
         {
@@ -81,6 +81,55 @@ namespace ECommerce.SqlCommands
             }
             DataHelper.DbConn.Close();
             return role;
+        }
+
+        public int GetUserID(string username)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select UserID From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                userID = Convert.ToInt32(dr[0].ToString());
+            }
+            DataHelper.DbConn.Close();
+            return userID;
+        }
+
+        public string GetUserName(string username)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Username From Users Where Username = @username;";
+
+            cmd.Parameters.Add(new SqlParameter("username", username));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (!dr.HasRows)
+            {
+                username = null;
+            }
+            else
+            {
+                while (dr.Read())
+                {
+                    username = dr[0].ToString();
+                }
+            }
+
+
+            DataHelper.DbConn.Close();
+            return username;
         }
 
     }

@@ -1,5 +1,4 @@
-﻿using ECommerce;
-using ECommerce.Models;
+﻿using ECommerce.DataModels;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,12 @@ namespace ECommerce.Helpers
     public class AccountHelper
     {
         private Factory _Factory;
+
+        public const string passwordInvalid = "Password invalid";
+        public const string hashInvalid = "Password hash invalid";
+        public const string userNameInvalid = "Username invalid";
+        public const string noUserOrPass = "Please enter a username and password";
+        public const string userNameTaken = "Username taken";
         public AccountHelper(Factory oFactory)
         {
             _Factory = oFactory;
@@ -49,27 +54,103 @@ namespace ECommerce.Helpers
             return savedPasswordHash;
         }
 
-        public string CheckAccount(string username, string password)
+        public string CheckLogin(string username, string password)
         {
-            string hashedPassword = _Factory.AccountCommands.GetHashedPassword(username);
+            string errorMessage = "";
+            List<string> errorMessages = new List<string>();
 
-            byte[] hashBytes = Convert.FromBase64String(hashedPassword);
-
-            byte[] salt = new byte[16];
-
-            Array.Copy(hashBytes, 0, salt, 0, 16);
-
-            var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
-
-            byte[] hash = pbkdf2.GetBytes(20);
-
-            for (int i = 0; i < 20; i++)
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
-                if (hashBytes[i + 16] != hash[i])
-                    throw new UnauthorizedAccessException();
+                errorMessages.Add(noUserOrPass);
+            }
+            else
+            {
+                string hashedPassword = _Factory.AccountCommands.GetHashedPassword(username);
+
+                if (String.IsNullOrEmpty(hashedPassword))
+                {
+                    errorMessages.Add(passwordInvalid);
+                }
+                else
+                {
+                    byte[] hashBytes = Convert.FromBase64String(hashedPassword);
+
+                    byte[] salt = new byte[16];
+
+                    Array.Copy(hashBytes, 0, salt, 0, 16);
+
+                    var pbkdf2 = new Rfc2898DeriveBytes(password, salt, 10000);
+
+                    byte[] hash = pbkdf2.GetBytes(20);
+
+                    List<string> hashErrors = new List<string>();
+
+
+                    for (int i = 0; i < 20; i++)
+                    {
+                        if (hashBytes[i + 16] != hash[i])
+                            hashErrors.Add(hashInvalid);
+                    }
+
+                    if (hashErrors.Count > 0)
+                    {
+                        errorMessages.Add(passwordInvalid);
+                    }
+                }
+
+
+
+                string userNameFound = _Factory.AccountCommands.GetUserName(username);
+
+                if (String.IsNullOrEmpty(userNameFound))
+                {
+                    errorMessages.Add(userNameInvalid);
+                }
+            }
+
+
+            if (errorMessages.Count > 0)
+            {
+                string lastString = errorMessages.Last();
+
+                foreach (string message in errorMessages)
+                {
+                    if (message.Equals(lastString))
+                    {
+                        errorMessage += message;
+                    }
+                    else
+                    {
+                        errorMessage += message + ", ";
+                    }
+                }
+
+                return errorMessage;
             }
 
             return password;
+        }
+
+        public string CheckRegister(string username, string password, string email)
+        {
+            string errorMessage = "";
+            List<string> errorMessages = new List<string>();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                errorMessages.Add(noUserOrPass);
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(_Factory.AccountCommands.GetUserName(username)))
+                {
+                    errorMessages.Add(userNameTaken);
+                }
+            }
+
+
+
+            return errorMessage;
         }
 
     }
