@@ -17,18 +17,24 @@ namespace ECommerce
         public TableCommands TableCommands;
         public DepartmentCommands DepartmentCommands;
         public AccountCommands AccountCommands;
+        public ItemCommands ItemCommands;
+        public CategoryCommands CategoryCommands;
+        public ShopCommands ShopCommands;
         public AccountHelper AccountHelper;
 
         public Factory()
         {
 
         }
-        public Factory( DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands, [Optional] AccountCommands accountCommands, [Optional] AccountHelper accountHelper)
+        public Factory(DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands, [Optional] AccountCommands accountCommands, [Optional] ItemCommands itemCommands, [Optional] CategoryCommands categoryCommands, [Optional] ShopCommands shopCommands, [Optional] AccountHelper accountHelper)
         {
             DataHelper = dataHelper;
             TableCommands = tableCommands;
             DepartmentCommands = departmentCommands;
             AccountCommands = accountCommands;
+            ItemCommands = itemCommands;
+            CategoryCommands = categoryCommands;
+            ShopCommands = shopCommands;
             AccountHelper = accountHelper;
         }
     }
