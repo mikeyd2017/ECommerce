@@ -1,0 +1,28 @@
+﻿@model ECommerce.DataModels.User
+@{
+    ViewData["Title"] = "Create Department";
+}
+
+<div class="department__container">
+    <h2 class="department__title">Create Department</h2>
+    @if (!String.IsNullOrEmpty(Model.LoginError))
+    {
+        <h3 class="login__error">@Model.LoginError</h3>
+    }
+    <form method="post" asp-controller="Account" asp-action="CreateDepartment" class="department__form">
+        <div>
+            <p>Department ID: </p>
+            <input asp-for="DepartmentID" />
+        </div>
+        <div>
+            <p>Department Name: </p>
+            <input asp-for="Name" />
+        </div>
+        <div>
+            <p>Date Created: </p>
+            <input asp-for="DateCreated"/>
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
+</div>
