@@ -43,7 +43,7 @@ namespace FullStackFullTime.Controllers
             if (password != errorOrPassword)
             {
                 User loginUser = new User();
-                loginUser.LoginError = errorOrPassword;
+                loginUser.AccountError = errorOrPassword;
 
                 return View(loginUser);
             }
@@ -64,16 +64,42 @@ namespace FullStackFullTime.Controllers
 
         public IActionResult Register()
         {
-            return View();
+            HttpContext.Session.SetString("uriBeforeLogin", Request.Headers["Referer"].ToString());
+            User newUser = new User();
+
+            return View(newUser);
         }
 
         [HttpPost]
         public IActionResult Register(string username, string password, string email)
         {
+            string errorMessage = _Factory.AccountHelper.CheckRegister(username, password, email);
+            if (!String.IsNullOrEmpty(errorMessage))
+            {
+                User registerUser = new User();
+                registerUser.AccountError = errorMessage;
+
+                return View(registerUser);
+            }
+
             password = _Factory.AccountHelper.HashPassword(password);
 
             _Factory.AccountHelper.CreateUser(username, password, email);
-            return View();
+
+
+            HttpContext.Session.SetString("role", _Factory.AccountCommands.GetUserRole(username));
+            HttpContext.Session.SetString("userID", Convert.ToString(_Factory.AccountCommands.GetUserID(username)));
+            HttpContext.Session.SetString("username", username);
+
+
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("uriBeforeLogin")))
+            {
+                return Redirect(HttpContext.Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                return Redirect(HttpContext.Session.GetString("uriBeforeLogin"));
+            }
         }
 
         public IActionResult Logout()

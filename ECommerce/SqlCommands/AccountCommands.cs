@@ -14,6 +14,7 @@ namespace ECommerce.SqlCommands
         private string password;
         private string role;
         private int userID;
+        private string email;
 
         public AccountCommands(DataHelper dataHelper)
         {
@@ -130,6 +131,48 @@ namespace ECommerce.SqlCommands
 
             DataHelper.DbConn.Close();
             return username;
+        }
+
+        public string CheckEmail(string email)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select Email From Users Where Email = @email;";
+
+            cmd.Parameters.Add(new SqlParameter("email", email));
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            List<string> emails = new List<string>();
+
+            if (!dr.HasRows)
+            {
+                DataHelper.DbConn.Close();
+                email = null;
+                return email;
+            }
+            else
+            {
+                while (dr.Read())
+                {
+                    emails.Add(dr.GetString(0));
+                }
+
+                foreach (string eachEmail in emails)
+                {
+                    if (eachEmail == email)
+                    {
+                        return email;
+                    }
+                    else
+                    {
+                        email = null;
+                    }
+                }
+            }
+
+            return email;
         }
 
     }

@@ -16,7 +16,13 @@ namespace ECommerce.Helpers
         public const string hashInvalid = "Password hash invalid";
         public const string userNameInvalid = "Username invalid";
         public const string noUserOrPass = "Please enter a username and password";
+        public const string noUserOrPassOrEmail = "Please enter a username, password, and email";
+        public const string noUser = "Please enter a username";
+        public const string noPassword = "Please enter a password";
+        public const string noEmail = "Please enter an email";
+        public const string emailInvalid = "Email invalid";
         public const string userNameTaken = "Username taken";
+        public const string emailTaken = "Email taken";
         public AccountHelper(Factory oFactory)
         {
             _Factory = oFactory;
@@ -136,22 +142,44 @@ namespace ECommerce.Helpers
             string errorMessage = "";
             List<string> errorMessages = new List<string>();
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
             {
-                errorMessages.Add(noUserOrPass);
+                errorMessages.Add(noUserOrPassOrEmail);
             }
             else
             {
-                if (String.IsNullOrEmpty(_Factory.AccountCommands.GetUserName(username)))
+                if (!String.IsNullOrEmpty(_Factory.AccountCommands.GetUserName(username)))
                 {
                     errorMessages.Add(userNameTaken);
                 }
+
+                if (!String.IsNullOrEmpty(_Factory.AccountCommands.CheckEmail(email)))
+                {
+                    errorMessages.Add(emailTaken);
+                }
+
             }
 
+            if (errorMessages.Count > 0)
+            {
+                string lastString = errorMessages.Last();
 
+                foreach (string message in errorMessages)
+                {
+                    if (message.Equals(lastString))
+                    {
+                        errorMessage += message;
+                    }
+                    else
+                    {
+                        errorMessage += message + ", ";
+                    }
+                }
+            }
 
             return errorMessage;
         }
+
 
     }
 }

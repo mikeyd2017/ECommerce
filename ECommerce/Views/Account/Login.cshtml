@@ -5,9 +5,9 @@
 
 <div class="login__container">
     <h2 class="login__title">Login</h2>
-    @if (!String.IsNullOrEmpty(Model.LoginError))
+    @if (!String.IsNullOrEmpty(Model.AccountError))
     {
-        <h3 class="login__error">@Model.LoginError</h3>
+        <h3 class="login__error">@Model.AccountError</h3>
     }
     <form method="post" asp-controller="Account" asp-action="Login" class="login__form">
         <div>

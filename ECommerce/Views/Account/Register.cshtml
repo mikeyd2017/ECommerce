@@ -3,22 +3,26 @@
     ViewData["Title"] = "CreateUser";
 }
 
-<div class="register__container">
-    <h2 class="register__title">Register</h2>
-    <form method="post" asp-controller="Account" asp-action="Register" class="register__form">
-        <div>
-            <p>Email: </p>
-            <input asp-for="Email" />
-        </div>
-        <div>
-            <p>Username: </p>
-            <input asp-for="Username" />
-        </div>
-        <div>
-            <p>Password: </p>
-            <input asp-for="Password" />
-        </div>
-        <button type="submit">Register</button>
-    </form>
-</div>
+    <div class="register__container">
+        <h2 class="register__title">Register</h2>
+        @if (!String.IsNullOrEmpty(Model.AccountError))
+        {
+            <h3 class="login__error">@Model.AccountError</h3>
+        }
+        <form method="post" asp-controller="Account" asp-action="Register" class="register__form">
+            <div>
+                <p>Email: </p>
+                <input asp-for="Email" />
+            </div>
+            <div>
+                <p>Username: </p>
+                <input asp-for="Username" />
+            </div>
+            <div>
+                <p>Password: </p>
+                <input asp-for="Password" />
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
 

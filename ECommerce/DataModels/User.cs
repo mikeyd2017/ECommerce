@@ -23,7 +23,7 @@ namespace ECommerce.DataModels
 
         public string Role { get; set; }
 
-        public string LoginError { get; set; }
+        public string AccountError { get; set; }
 
         public User()
         {
