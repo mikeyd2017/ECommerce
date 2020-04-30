@@ -1,13 +1,13 @@
-﻿@model ECommerce.DataModels.User
+﻿@model ECommerce.DataModels.Item
 @{
     ViewData["Title"] = "Create Item";
 }
 
 <div class="item__container">
     <h2 class="item__title">Create Item</h2>
-    @if (!String.IsNullOrEmpty(Model.LoginError))
+    @if (!String.IsNullOrEmpty(Model.ItemError))
     {
-        <h3 class="login__error">@Model.LoginError</h3>
+        <h3 class="login__error">@Model.ItemError</h3>
     }
     <form method="post" asp-controller="Account" asp-action="CreateItem" class="item__form">
         <div>

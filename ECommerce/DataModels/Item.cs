@@ -19,6 +19,8 @@ namespace ECommerce.DataModels
         public double Price { get; set; }
         public string Description { get; set; }
 
+        public string ItemError { get; set; }
+
         public Item([Optional] int itemID, int categoryID, string name, int quantity, double price, string description)
         {
             ItemID = itemID;

@@ -14,7 +14,6 @@ namespace ECommerce.SqlCommands
         private string password;
         private string role;
         private int userID;
-        private string email;
 
         public AccountCommands(DataHelper dataHelper)
         {

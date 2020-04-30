@@ -17,6 +17,8 @@ namespace ECommerce.DataModels
         [Required]
         public string Name { get; set; }
 
+        public string ShopError { get; set; }
+
         public Shop([Optional] int shopID, int userID, int departmentID, string name)
         {
             ShopID = shopID;

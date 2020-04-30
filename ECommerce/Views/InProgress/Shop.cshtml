@@ -1,18 +1,17 @@
-﻿@model ECommerce.DataModels.User
-@{
+﻿@model ECommerce.DataModels.Shop
     ViewData["Title"] = "Create Shop";
 }
 
 <div class="shop__container">
     <h2 class="shop__title">Create Shop</h2>
-    @if (!String.IsNullOrEmpty(Model.LoginError))
+    @if (!String.IsNullOrEmpty(Model.ShopError))
     {
-        <h3 class="login__error">@Model.LoginError</h3>
+        <h3 class="login__error">@Model.ShopError</h3>
     }
     <form method="post" asp-controller="Account" asp-action="CreateShop" class="shop__form">
         <div>
             <p>Shop ID: </p>
-            <input asp-for="CategoryID" />
+            <input asp-for="ShopID" />
         </div>
         <div>
             <p>User ID: </p>

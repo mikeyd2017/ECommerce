@@ -1,13 +1,13 @@
-﻿@model ECommerce.DataModels.User
+﻿@model ECommerce.DataModels.Department
 @{
     ViewData["Title"] = "Create Department";
 }
 
 <div class="department__container">
     <h2 class="department__title">Create Department</h2>
-    @if (!String.IsNullOrEmpty(Model.LoginError))
+    @if (!String.IsNullOrEmpty(Model.DepartmentError))
     {
-        <h3 class="login__error">@Model.LoginError</h3>
+        <h3 class="login__error">@Model.DepartmentError</h3>
     }
     <form method="post" asp-controller="Account" asp-action="CreateDepartment" class="department__form">
         <div>

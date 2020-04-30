@@ -1,13 +1,13 @@
-﻿@model ECommerce.DataModels.User
+﻿@model ECommerce.DataModels.Category
 @{
     ViewData["Title"] = "Create Category";
 }
 
 <div class="category__container">
     <h2 class="category__title">Create Category</h2>
-    @if (!String.IsNullOrEmpty(Model.LoginError))
+    @if (!String.IsNullOrEmpty(Model.CategoryError))
     {
-        <h3 class="login__error">@Model.LoginError</h3>
+        <h3 class="login__error">@Model.CategoryError</h3>
     }
     <form method="post" asp-controller="Account" asp-action="CreateCategory" class="category__form">
         <div>
