@@ -1,0 +1,33 @@
+﻿@model ECommerce.DataModels.User
+@{
+    ViewData["Title"] = "Create Shop";
+}
+
+<div class="shop__container">
+    <h2 class="shop__title">Create Shop</h2>
+    @if (!String.IsNullOrEmpty(Model.LoginError))
+    {
+        <h3 class="login__error">@Model.LoginError</h3>
+    }
+    <form method="post" asp-controller="Account" asp-action="CreateShop" class="shop__form">
+        <div>
+            <p>Shop ID: </p>
+            <input asp-for="CategoryID" />
+        </div>
+        <div>
+            <p>User ID: </p>
+            <input asp-for="UserID"/>
+        </div>
+        <div>
+            <p>Department ID: </p>
+            <input asp-for="DepartmentID"/>
+        </div>
+        <div>
+            <p>Shop Name: </p>
+            <input asp-for="Name" />
+        </div>
+        
+
+        <button type="submit">Create</button>
+    </form>
+</div>
