@@ -34,5 +34,25 @@ namespace ECommerce.SqlCommands
 
             return true;
         }
+
+        public List<Category> GetAllCategories()
+        {
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select * FROM Category;";
+
+            DataHelper.DbConn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Category> categories = new List<Category>();
+            while (reader.Read())
+            {
+                categories.Add(new Category(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2)));
+            }
+
+            DataHelper.DbConn.Close();
+
+            return categories;
+        }
     }
 }

@@ -36,5 +36,25 @@ namespace ECommerce.SqlCommands
 
             return true;
         }
+
+        public List<Shop> GetAllShops()
+        {
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select * FROM Shop;";
+            
+            DataHelper.DbConn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            List<Shop> shops = new List<Shop>();
+            while (reader.Read())
+            {
+                shops.Add(new Shop(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetString(3)));
+            }
+
+            DataHelper.DbConn.Close();
+
+            return shops;
+        }
     }
 }
