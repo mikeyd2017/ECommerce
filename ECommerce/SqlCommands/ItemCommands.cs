@@ -11,6 +11,7 @@ namespace ECommerce.SqlCommands
     public class ItemCommands
     {
         private DataHelper DataHelper;
+        private Item item;
 
         public ItemCommands(DataHelper dataHelper)
         {
@@ -38,11 +39,13 @@ namespace ECommerce.SqlCommands
             return true;
         }
 
-        public List<Item> GetAllItems()
+        public List<Item> GetAllItems(int categoryID)
         {
             SqlCommand cmd = DataHelper.DbConn.CreateCommand();
 
-            cmd.CommandText = "Select * FROM Item;";
+            cmd.CommandText = "Select * FROM Item Where CategoryID = @categoryID;";
+
+            cmd.Parameters.Add(new SqlParameter("categoryID", categoryID));
 
             DataHelper.DbConn.Open();
 
@@ -56,6 +59,28 @@ namespace ECommerce.SqlCommands
             DataHelper.DbConn.Close();
 
             return items;
+        }
+
+        public Item GetItem(int itemID)
+        {
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select * FROM Item Where itemID = @itemID;";
+
+            cmd.Parameters.Add(new SqlParameter("itemID", itemID));
+
+            DataHelper.DbConn.Open();
+
+            SqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                item = new Item(reader.GetInt32(0), reader.GetInt32(1), reader.GetString(2), reader.GetInt32(3), reader.GetDouble(4), reader.GetString(5));
+            }
+
+            DataHelper.DbConn.Close();
+
+            return item;
         }
     }
 }

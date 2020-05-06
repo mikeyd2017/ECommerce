@@ -60,6 +60,17 @@ namespace ECommerce.SqlCommands
             return true;
         }
 
+        public bool DropItemTable()
+        {
+            string query = "IF Object_ID('dbo.Items', 'U') IS NOT NULL DROP TABLE dbo.Items;";
+            SqlCommand cmd = new SqlCommand(query, DataHelper.DbConn);
+            DataHelper.DbConn.Open();
+            cmd.ExecuteNonQuery();
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+
         public bool CreateUserTable()
         {
             DataHelper.DbConn.Open();
@@ -83,5 +94,20 @@ namespace ECommerce.SqlCommands
             DataHelper.DbConn.Close();
             return true;
         }
+
+        public bool CreateItemTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "Create Table Items (ItemID int IDENTITY(1,1) PRIMARY KEY, CategoryID int NOT NULL, Name varchar(40) NOT NULL, Price money NOT NULL, Description varchar(150) NOT NULL, Constraint FK_Category_Item FOREIGN KEY (CategoryID) REFERENCES Category (CategoryID) ON DELETE CASCADE ON UPDATE CASCADE);";
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+
+
     }
 }

@@ -10,8 +10,31 @@
     float: left;
     height: 30%;
     background-color: #1a1a1a; }
+    .dashboard__top__container h1 {
+      font-weight: 700;
+      font-size: 30px;
+      text-align: center;
+      margin-top: calc(50% - 30px); }
   .dashboard__bottom__container {
     width: 100%;
     float: left;
     height: 70%;
     background-color: #0d0d0d; }
+    .dashboard__bottom__container__list {
+      text-align: center;
+      text-decoration: none;
+      list-style: none;
+      padding-inline-start: 0px;
+      margin: 0px auto;
+      padding-top: 15px; }
+      .dashboard__bottom__container__list li {
+        background-color: #0d0d0d;
+        width: 100%; }
+        .dashboard__bottom__container__list li a {
+          padding: 5px 0px;
+          color: white;
+          font-size: 25px;
+          font-weight: 600;
+          text-transform: uppercase;
+          display: block;
+          cursor: pointer; }

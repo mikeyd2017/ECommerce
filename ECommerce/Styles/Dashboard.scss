@@ -13,6 +13,14 @@
         float: left;
         height: 30%;
         background-color: $light-charcoal;
+
+        h1 {
+            font-weight: 700;
+            font-size: 30px;
+            text-align: center;
+            margin-top: calc(50% - 30px);
+
+        }
     }
 
     &__bottom__container {
@@ -20,5 +28,29 @@
         float: left;
         height: 70%;
         background-color: $charcoal;
+
+        &__list {
+            text-align: center;
+            text-decoration: none;
+            list-style: none;
+            padding-inline-start: 0px;
+            margin: 0px auto;
+            padding-top: 15px;
+
+            li {
+                background-color: $charcoal;
+                width: 100%;
+
+                a {
+                    padding: 5px 0px;
+                    color: white;
+                    font-size: 25px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    display: block;
+                    cursor: pointer;
+                }
+            }
+        }
     }
 }

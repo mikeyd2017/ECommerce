@@ -55,6 +55,7 @@ namespace FullStackFullTime.Controllers
 
         public IActionResult Department(string departmentID)
         {
+
             return View("Department");
         }
 

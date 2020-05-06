@@ -38,6 +38,7 @@ namespace ECommerce.Controllers
             //oFactory.DepartmentCommands.CreateDepartments();
             //oFactory.TableCommands.CreateUserTable();
             //oFactory.TableCommands.AddHashedPassToUserTable();
+            oFactory.TableCommands.CreateItemTable();
 
             List<Department> departments = oFactory.DepartmentCommands.GetAllDepartments();
             return View(departments);
