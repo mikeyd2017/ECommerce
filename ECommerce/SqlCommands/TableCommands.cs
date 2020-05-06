@@ -76,7 +76,31 @@ namespace ECommerce.SqlCommands
             DataHelper.DbConn.Open();
 
             SqlCommand cmd = DataHelper.DbConn.CreateCommand();
-            cmd.CommandText = "Create Table Users (UserID int IDENTITY(1,1) PRIMARY KEY, Username varchar(20) NOT NULL, Password varchar(40) NOT NULL, Email varchar(60) NOT NULL, Role varchar(30) NOT NULL, CreateDate date NOT NULL);";
+            cmd.CommandText = "Create Table Users (UserID int IDENTITY PRIMARY KEY, Username varchar(20) NOT NULL, Password varchar(40) NOT NULL, Email varchar(60) NOT NULL, Role varchar(30) NOT NULL, CreateDate date NOT NULL);";
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+        public bool CreateShopTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "Create Table Shop (ShopID int IDENTITY(1,1) PRIMARY KEY, UserID int NOT NULL, DepartmentID int NOT NULL, Name varchar(254) NOT NULL, CONSTRAINT FK_USER_SHOP FOREIGN KEY(UserID) REFERENCES Users(UserID), CONSTRAINT FK_SHOP_DEPARTMENT FOREIGN KEY(DepartmentID) REFERENCES Department(DepartmentID) ON DELETE CASCADE ON UPDATE CASCADE);"; 
+            cmd.ExecuteNonQuery();
+
+            DataHelper.DbConn.Close();
+            return true;
+        }
+
+        public bool CreateCategoryTable()
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+            cmd.CommandText = "Create Table Category (CategoryID int IDENTITY PRIMARY KEY, Name varchar(254) NOT NULL, ShopID int NOT NULL, CONSTRAINT FK_Shop_Category FOREIGN KEY (ShopID) REFERENCES Shop(ShopID) ON DELETE CASCADE ON UPDATE CASCADE);";
             cmd.ExecuteNonQuery();
 
             DataHelper.DbConn.Close();
