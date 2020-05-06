@@ -6,11 +6,11 @@
 <div class="departmentContainer">
     @foreach (var item in Model)
     {
-        <div class="departmentContainer__department">
-            <p class="departmentContainer__department__name">@item.Name</p>
-        </div>
-
-        <p>hi</p>
+        <a href="@Url.Action("Department", "Department", new { id = item.DepartmentID })">
+            <div class="departmentContainer__department">
+                <p class="departmentContainer__department__name">@item.Name</p>
+            </div>
+        </a>
     }
     <div style="clear:both">
 </div>

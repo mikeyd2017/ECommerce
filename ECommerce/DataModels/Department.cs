@@ -17,6 +17,10 @@ namespace ECommerce.DataModels
 
         //Optional when creating the department, because the ID will be set by SQL and the dateTime will be set automatically. But I want them in the parameter so when we get
         //Them from the database we can still easily instaniate the dataModel with one constructor. Still wondering if this works correctly.
+
+        public Department()
+        {
+        }
         public Department([Optional] int departmentID, string name, DateTime dateCreated)
         {
             Name = name;

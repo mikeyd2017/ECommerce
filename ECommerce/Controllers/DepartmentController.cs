@@ -19,8 +19,8 @@ namespace FullStackFullTime.Controllers
         public DepartmentController(IConfiguration iConfig)
         {
             _Factory.DataHelper = new DataHelper(iConfig);
-            _Factory.AccountCommands = new DepartmentCommands(_Factory.DataHelper);
-            _Factory.AccountHelper = new DepartmentHelper(_Factory);
+            _Factory.DepartmentCommands = new DepartmentCommands(_Factory.DataHelper);
+            _Factory.DepartmentHelper = new DepartmentHelper(_Factory);
         }
         public IActionResult Index()
         {
@@ -49,6 +49,13 @@ namespace FullStackFullTime.Controllers
                 return View(createDepartment);
             }
 
+            return View("Departments");
+
+        }
+
+        public IActionResult Department(string departmentID)
+        {
+            return View("Department");
         }
 
 

@@ -21,12 +21,13 @@ namespace ECommerce
         public CategoryCommands CategoryCommands;
         public ShopCommands ShopCommands;
         public AccountHelper AccountHelper;
+        public DepartmentHelper DepartmentHelper;
 
         public Factory()
         {
 
         }
-        public Factory(DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands, [Optional] AccountCommands accountCommands, [Optional] ItemCommands itemCommands, [Optional] CategoryCommands categoryCommands, [Optional] ShopCommands shopCommands, [Optional] AccountHelper accountHelper)
+        public Factory(DataHelper dataHelper, [Optional] TableCommands tableCommands, [Optional] DepartmentCommands departmentCommands, [Optional] AccountCommands accountCommands, [Optional] ItemCommands itemCommands, [Optional] CategoryCommands categoryCommands, [Optional] ShopCommands shopCommands, [Optional] AccountHelper accountHelper, [Optional] DepartmentHelper departmentHelper)
         {
             DataHelper = dataHelper;
             TableCommands = tableCommands;
@@ -36,6 +37,7 @@ namespace ECommerce
             CategoryCommands = categoryCommands;
             ShopCommands = shopCommands;
             AccountHelper = accountHelper;
+            DepartmentHelper = departmentHelper;
         }
     }
 }

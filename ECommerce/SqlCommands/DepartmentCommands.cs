@@ -13,6 +13,7 @@ namespace ECommerce.SqlCommands
     {
         //Each Commands file will be created with a dataHelper loaded in from the Factory in the controller
         private DataHelper DataHelper;
+        Department department = new Department();
 
         //Constructor used when instanciating the command file, we are using the dataHelper from the Factory in the controller
         public DepartmentCommands(DataHelper dataHelper)
@@ -66,5 +67,29 @@ namespace ECommerce.SqlCommands
 
             return departments;
         }
+
+        public Department GetDepartment(int departmentID)
+        {
+            DataHelper.DbConn.Open();
+
+            SqlCommand cmd = DataHelper.DbConn.CreateCommand();
+
+            cmd.CommandText = "Select * From Department Where DepartmentID = @departmentID;";
+
+            cmd.Parameters.Add(new SqlParameter("departmentID", departmentID));
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+            while (dr.Read())
+            {
+                department = new Department(Convert.ToInt32(dr[0].ToString()), dr[1].ToString(), Convert.ToDateTime(dr[2].ToString()));
+            }
+
+            DataHelper.DbConn.Close();
+
+            return department;
+        }
+
     }
 }

@@ -23,63 +23,64 @@ namespace ECommerce.Helpers
         {
             _Factory = oFactory;
         }
-       
 
-        public bool CreateDepartment(int departmentID, string departmentName, DateTime dateCreated) 
+
+        public bool CreateDepartment(int departmentID, string departmentName, DateTime dateCreated)
         {
             Department newDepartment = new Department();
             newDepartment.DepartmentID = departmentID;
-            newDepartment.DepartmentName = departmentName;
+            newDepartment.Name = departmentName;
             newDepartment.DateCreated = dateCreated;
 
-            _Factory.DepartmentCommands.InsertDepartment(newDepartment);
+            //_Factory.DepartmentCommands.InsertDepartment(newDepartment);
 
             return true;
         }
 
-    public string CheckCreate(string departmentID, string name, string dateCreated)
+        public string CheckCreate(string departmentID, string name, string dateCreated)
         {
-            string errorMessage = "";
-            List<string> errorMessages = new List<string>();
+            //    string errorMessage = "";
+            //    List<string> errorMessages = new List<string>();
 
-            if (string.IsNullOrEmpty(departmentID) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(dateCreated))
-            {
-                errorMessages.Add(noDepartmentIDOrNameOrDateCreated);
-            }
-            else
-            {
-                if (!String.IsNullOrEmpty(_Factory.DepartmentCommands.GetDepartmentID(departmentID)))
-                {
-                    errorMessages.Add(departmentIDTaken);
-                }
+            //    if (string.IsNullOrEmpty(departmentID) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(dateCreated))
+            //    {
+            //        errorMessages.Add(noDepartmentIDOrNameOrDateCreated);
+            //    }
+            //    else
+            //    {
+            //        if (!String.IsNullOrEmpty(_Factory.DepartmentCommands.GetDepartmentID(departmentID)))
+            //        {
+            //            errorMessages.Add(departmentIDTaken);
+            //        }
 
-                if (!String.IsNullOrEmpty(_Factory.DepartmentCommands.CheckDepartmentName(name)))
-                {
-                    errorMessages.Add(departmentNameTaken);
-                }
+            //        if (!String.IsNullOrEmpty(_Factory.DepartmentCommands.CheckDepartmentName(name)))
+            //        {
+            //            errorMessages.Add(departmentNameTaken);
+            //        }
 
-            }
+            //    }
 
-            if (errorMessages.Count > 0)
-            {
-                string lastString = errorMessages.Last();
+            //    if (errorMessages.Count > 0)
+            //    {
+            //        string lastString = errorMessages.Last();
 
-                foreach (string message in errorMessages)
-                {
-                    if (message.Equals(lastString))
-                    {
-                        errorMessage += message;
-                    }
-                    else
-                    {
-                        errorMessage += message + ", ";
-                    }
-                }
-            }
+            //        foreach (string message in errorMessages)
+            //        {
+            //            if (message.Equals(lastString))
+            //            {
+            //                errorMessage += message;
+            //            }
+            //            else
+            //            {
+            //                errorMessage += message + ", ";
+            //            }
+            //        }
+            //    }
 
-            return errorMessage;
+            //    return errorMessage;
+            //}
+
+            return "test";
         }
-
-
     }
 }
